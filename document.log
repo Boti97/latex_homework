@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  28 NOV 2021 17:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  28 NOV 2021 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -254,20 +254,20 @@ File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 (./document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
 
 -- Lines per column: 56 (exact).
 (c:/Programs/Texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -291,14 +291,30 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-
-LaTeX Warning: No \author given.
-
-
-LaTeX Warning: No \author given.
+[1{c:/Programs/Texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-LaTeX Warning: No \author given.
+]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
+
+
+(c:/Programs/Texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
+
+
+(c:/Programs/Texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 1742) in paragraph at lines 66--67
+\OT1/ptm/m/n/10 is-crim-i-nant scheme [14], such that the re-sul-tant dic-tio-
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 130--132
+[]\OT1/ptm/m/n/10 The dic-tio-nary learn-ing and clus-ter-ing pa-ram-e-ters
+ []
 
 
 ** Conference Paper **
@@ -311,28 +327,29 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1{c:/Programs/Texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-
-]
-(./document.aux) ) 
+[3] (./document.aux) ) 
 Here is how much of TeX's memory you used:
- 3891 strings out of 478599
- 57163 string characters out of 5853592
- 358361 words of memory out of 5000000
- 21768 multiletter control sequences out of 15000+600000
- 430583 words of font info for 73 fonts, out of 8000000 for 9000
+ 3924 strings out of 478599
+ 57707 string characters out of 5853592
+ 372361 words of memory out of 5000000
+ 21786 multiletter control sequences out of 15000+600000
+ 434496 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,66p,231b,253s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Programs/Texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.
-enc}<c:/Programs/Texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/P
+ 57i,8n,66p,1260b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Programs/Texlive/2021/texmf-dist/fonts/enc/dvips/base
+/8r.enc}<c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i10.pfb><c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb><c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb><c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
+pfb><c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb><c:/Programs/Texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/P
 rograms/Texlive/2021/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/Programs/
-Texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on document.pdf (1 page, 34263 bytes).
+Texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Programs/Texlive/2
+021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on document.pdf (3 pages, 115859 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 14 compressed objects within 1 object stream
+ 60 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
