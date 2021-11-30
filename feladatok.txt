@@ -1,7 +1,8 @@
 Latex doksi:
 	- Cím alatt hiányoznak a "referenciák" ^1, ^2 stb
-	- parancs az omega sapka n σˆn megvalósítására
-	- ${m_i}^i$ nem jól jelennek meg
+	- parancs az omega sapka n σˆn megvalósítására			- ✓ - \hat
+	- ${m_i}^i$ nem jól jelennek meg 						- ✓ - _i^i a helyes
 	
 TODOFIX: valami hibás
 TODOEQ: egyenlet hiányzik
+TABLEREF: tábla referenciák

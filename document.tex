@@ -6,6 +6,9 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{amsmath}
+
+\DeclareMathOperator*{\argmin}{argmin}
 
 \begin{document}
 
@@ -19,6 +22,13 @@
 	\IEEEauthorblockA{Pittsburgh, PA 15261}
 	\IEEEauthorblockA{ahd12@pitt.edu}
 }
+
+%parancsok, környezetek
+\newcommand{\paralleled}[1]{\Vert{#1}\Vert}
+\newcommand{\bigparalleled}[1]{\big\Vert{#1}\big\Vert}
+\newcommand{\Bigparalleled}[1]{\Big\Vert{#1}\Big\Vert}
+\newcommand{\biggparalleled}[1]{\bigg\Vert{#1}\bigg\Vert}
+\newcommand{\Biggparalleled}[1]{\Bigg\Vert{#1}\Bigg\Vert}
 
 
 \maketitle
@@ -56,49 +66,46 @@
 	
 	\subsection{Spike Detection}
 	First, the signal is filtered by a fourth order bandpass (300 – 6000 Hz) filter. Then, amplitude thresholding was used for spike detection. The threshold, Tv, is derived from an estimate of the noise level [7] as,
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
+	\begin{equation}
+		T_v=4\hat{\sigma}_n,\;\;\hat{\omega}_n=\mathrm{median}(V(t)/0.6745),
+	\end{equation}
 	where V (t) is the filtered signal and TODO is an estimate of noise standard deviation. For each detected spike, a 2.5 milliseconds widow is identified as the spiking activity to be processed.
 	
 	\subsection{Fisher Discrimination Dictionary Learning}
 	A structured dictionary, D, is learned based on a Fisher iscriminant scheme [14], such that the resultant dictionary atoms have correspondence to class labels, i.e., $D = D_1, D_2, ..., D_N]$, where $D_i$ s the class specific sub-dictionary sociated with class i, and N is the total number of classes. or a training samples set $A = [A_1, A_2, ..., A_N]$, where $A_i$ s he sub-set samples from class i, we denote X as the coding oefficients of samples matrix A over D, i.e., $A \approx DX$. Also,  can be expressed as $X = [X_1, X_2, ..., X_N]$, where $X_i$ s he sub-matrix for coding coefficients of $A_i$ over D.
 	
 	The coding coefficients should be sparse, and the dictionary should be able to accurately construct $A$. The dictionary should have a high discriminating capability of spike classes in $A$, as well. Based on these three objective, the optimization problem in (2) can be proposed to estimate $D$ and $X$ from the training set $A$.
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
-	where $r(A, D, X)$ is the discrimination fidelity term, $\parallel$$X$$\parallel _1$ is the sparsity constraint, $f(X)$ is the discrimination constraint on the coding coefficients, and $\lambda_{1,2}$ are scalar parameters.
+	\begin{equation}
+		J=\min_{D,X}\sum_{i=0}^{N}r(A_i,D,X_i)+\lambda\paralleled{X}_1+\lambda_2f{X}
+	\end{equation}
+	where $r(A, D, X)$ is the discrimination fidelity term, $\paralleled{X}_1$ is the sparsity constraint, $f(X)$ is the discrimination constraint on the coding coefficients, and $\lambda_{1,2}$ are scalar parameters.
 	
 	With each sub-dictionary $D_i$ associated with the $i^{th}$ class, $A_i$ should be well represented by $D_i$ but not $D_j$, $i \neq j$. This implies that $X_i$ be nearly zero, except for some significant coefficients that correspond to the sub-dictionary $D_i$ . Hence, the discriminative fidelity term is defined as
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
-	where TODOFIX${X_j}^i$ is the coding coefficient of $A_i$ over $D_j$. Discriminative coding coefficients is achieved by designing $f(X)$ using Fisher discrimination criterion. This criterion minimizes the within class variance of $X$, TODOEQ, and maximizes the between class variance of $X$, TODOEQ; where $n_i$ is the number of training samples in class $i$, and $m$ and $m_i$ are the mean vectors
+	\begin{multline}
+		r(A_i,D,X_i)=\paralleled{A_i-DX_i}_F^2+\paralleled{A_i-D_iX_i^i}+ \\
+		\sum_{j=1,j\neq i}^{N}\Bigparalleled{D_jX_i^j}_F^2,
+	\end{multline}
+	where $X_j^i$ is the coding coefficient of $A_i$ over $D_j$. Discriminative coding coefficients is achieved by designing $f(X)$ using Fisher discrimination criterion. This criterion minimizes the within class variance of $X$, $S_W(X)=\sum_{i=1}^{N}\sum_{x\in X_i}(\mathrm{\textbf{x}}-\mathrm{\textbf{m}}_
+	\mathrm{\textbf{i}})(\mathrm{\textbf{x}}-\mathrm{\textbf{m}}_\mathrm{\textbf{i}})^T$, and maximizes the between class variance of $X$, $\sum_{i=1}^{N}n_i(\mathrm{\textbf{m}}-\mathrm{\textbf{m}}_\mathrm{\textbf{i}})(\mathrm{\textbf{m}}-\mathrm{\textbf{m}}_\mathrm{\textbf{i}})^T$; where $n_i$ is the number of training samples in class $i$, and $\mathrm{\textbf{m}}$ and $\mathrm{\textbf{m}}_\mathrm{\textbf{i}}$ are the mean vectors
 	%TODO add table
 	of $X$ and $X_i$ respectively. Therefore, a convex discrimination
 	function could be defined as
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
+	\begin{equation}
+		f(X)=\mathrm{tr}(S_W(X))-\mathrm{tr}(S_B(X))+\eta\paralleled{X}_F^2,
+	\end{equation}
 	where the last term is an elastic term with a scalar parameter $\eta$. Substituting (3) and (4) into (2) completes the problem formulation. The objective function (2) is not jointly convex on $D$ and $X$, but, it is convex with respect to each of them when the other is fixed. Therefore, $D$ and $X$ are alternatively optimized, where we update $X$ by fixing $D$, and update $D$ by fixing $X$. These two sub-problems are iteratively solved until convergence.
 	
 	In the first sub-problem, (2) is reduced to sparse coding problem in which Xi was estimated class by class. When estimating Xi , other classes coefficients Xj , j 6= i, are held constant. The reduced objective function is
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
-	with TODOREQ, where $M_k$ and and $M$ are the mean vector matrices of class $k$ and all classes receptively. We set $\eta$ to 1, so that $f_i(X_i)$ is strictly convex to $X_i$ . Equation (5) is solved using the iterative projection method [14].
+	\begin{equation}
+		J_{X_i}=\min_{X_i}r(A_i,D,X_i)+\lambda_1\paralleled{X}_1+\lambda_2f_i(X_i),
+	\end{equation}
+	with $f_i(X_i)=\paralleled{X_i-M_i}_F^2-\sum_{k=1}^{N}\paralleled{M-M_k}_F^2+\paralleled{X}_F^2$, where $M_k$ and and $M$ are the mean vector matrices of class $k$ and all classes receptively. We set $\eta$ to 1, so that $f_i(X_i)$ is strictly convex to $X_i$ . Equation (5) is solved using the iterative projection method [14].
 	
 	The sub-dictionaries $D_i$ are estimated class by class, while fixing $X$ and all other sub-dictionaries $D_j$, $j\neq i$. The reduced objective function is
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
+	\begin{multline}
+		J_{D_i}=\min_{D_i}\Biggparalleled{A-D_iX^i-\sum_{j=1,j\neq i}^{N}D_jX_i^i}_F^2 + \\
+		\paralleled{A_iD_iX_i^i}_F^2+\sum_{j=1,j\neq i}^{N}\paralleled{D_iX_j^i}_F^2,
+	\end{multline}
 	which is a quadratic programming problem. The algorithm for FDDL is shown in table TABLEREF.
 	
 	\subsection{Spike Clustering}
@@ -107,22 +114,19 @@
 	Since the number of training samples is relatively with respect to the number of clusters, $D_i$ can well represent the $i^{th}$ class. Hence, the test sample, $s$, is directly codded over $D_i$; this reduces the influence of other classes sub-dictionaries. The
 	
 	%TODO: add figure
-	
+	 
 	coding coefficients, $y_i$, associated with $D_i$ can then computed as
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
+	\begin{equation}
+		\hat{\textbf{y}_i}=\argmin_{\textbf{y}_i}\paralleled{\textbf{s}-D_i\textbf{y}_i}_2^2+\gamma_1\paralleled{\textbf{y}_i}_1+\gamma_2\paralleled{\textbf{y}_i-\textbf{m}_i^i}_2^2,
+	\end{equation}
 	where TODOFIX${m_i}^i$ is the $i^{th}$-class trained mean sub-vector associated with $D_i$, and $\gamma_1$ and $\gamma_2$ are constants. From (7), $y_i$ should be close to TODOFIX$mi i$, and $D_i$ should well sparsely code $s$. Therefore, the classification metric is defined by
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
+	\begin{equation}
+		e_i=\paralleled{\text{s}-D_i\hat{\textbf{y}_i}}_2^2+\gamma_1\paralleled{\hat{\textbf{y}_i}}_1+\gamma_2\paralleled{\hat{\textbf{y}_i-\textbf{m}_i^i}}_2^2,
+	\end{equation}
 	The testing sample $s$ was assigned to the class that gave the minimum error (9).
-	%TODO add correct equation
-	$$
-	\alpha + \beta = \chi \eqno{(1)}
-	$$
+	\begin{equation}
+		\mathrm{cluster(s)}=\argmin_ie_i
+	\end{equation}
 	
 	\subsection{Testing Experiment}
 	The algorithm was applied on four simulated data sets [7], each contains spiking activities from three different neurons with mean firing rate of 20 Hz and 24 KHz sampling rate. The data were taken from real recordings, and four noise levels were imposed to simulate real background activity. The noise level was from the standard deviation, which was equal to 0.05, 0.1, 0.15, and 0.2 relative to the spike classes amplitude. Fig. 1 shows a sample of the used data sets. The reason of using simulated data is to obtain an objective measure of performance, since the simulation defines the identity of the spikes.
