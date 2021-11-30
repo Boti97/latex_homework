@@ -1,0 +1,73 @@
+\begin{thebibliography}{10}
+
+\bibitem{Nicolelis2009PrinciplesON}
+M.~A.~L. Nicolelis and M.~A. Lebedev, ``Principles of neural ensemble
+  physiology underlying the operation of brain–machine interfaces,'' {\em
+  Nature Reviews Neuroscience}, vol.~10, pp.~530--540, 2009.
+
+\bibitem{zador1997spikes}
+A.~Zador, ``Spikes: Exploring the neural code,'' {\em Science}, vol.~277,
+  no.~5327, pp.~772--773, 1997.
+
+\bibitem{wehr1999simultaneous}
+M.~Wehr, J.~S. Pezaris, and M.~Sahani, ``Simultaneous paired intracellular and
+  tetrode recordings for evaluating the performance of spike sorting
+  algorithms,'' {\em Neurocomputing}, vol.~26, pp.~1061--1068, 1999.
+
+\bibitem{lewicki1998review}
+M.~S. Lewicki, ``A review of methods for spike sorting: the detection and
+  classification of neural action potentials,'' {\em Network: Computation in
+  Neural Systems}, vol.~9, no.~4, p.~R53, 1998.
+
+\bibitem{rodieck1967maintained}
+R.~Rodieck, ``Maintained activity of cat retinal ganglion cells.,'' {\em
+  Journal of Neurophysiology}, vol.~30, no.~5, pp.~1043--1071, 1967.
+
+\bibitem{adamos2008performance}
+D.~A. Adamos, E.~K. Kosmidis, and G.~Theophilidis, ``Performance evaluation of
+  pca-based spike sorting algorithms,'' {\em Computer methods and programs in
+  biomedicine}, vol.~91, no.~3, pp.~232--244, 2008.
+
+\bibitem{quiroga2004unsupervised}
+R.~Q. Quiroga, Z.~Nadasdy, and Y.~Ben-Shaul, ``Unsupervised spike detection and
+  sorting with wavelets and superparamagnetic clustering,'' {\em Neural
+  computation}, vol.~16, no.~8, pp.~1661--1687, 2004.
+
+\bibitem{wood2008nonparametric}
+F.~Wood and M.~J. Black, ``A nonparametric bayesian alternative to spike
+  sorting,'' {\em Journal of neuroscience methods}, vol.~173, no.~1, pp.~1--12,
+  2008.
+
+\bibitem{kadir2014high}
+S.~N. Kadir, D.~F. Goodman, and K.~D. Harris, ``High-dimensional cluster
+  analysis with the masked em algorithm,'' {\em Neural computation}, vol.~26,
+  no.~11, pp.~2379--2394, 2014.
+
+\bibitem{franke2015bayes}
+F.~Franke, R.~Q. Quiroga, A.~Hierlemann, and K.~Obermayer, ``Bayes optimal
+  template matching for spike sorting--combining fisher discriminant analysis
+  with optimal filtering,'' {\em Journal of computational neuroscience},
+  vol.~38, no.~3, pp.~439--459, 2015.
+
+\bibitem{carlson2013multichannel}
+D.~E. Carlson, J.~T. Vogelstein, Q.~Wu, W.~Lian, M.~Zhou, C.~R. Stoetzner,
+  D.~Kipke, D.~Weber, D.~B. Dunson, and L.~Carin, ``Multichannel
+  electrophysiological spike sorting via joint dictionary learning and mixture
+  modeling,'' {\em IEEE Transactions on Biomedical Engineering}, vol.~61,
+  no.~1, pp.~41--54, 2013.
+
+\bibitem{lewicki2000learning}
+M.~S. Lewicki and T.~J. Sejnowski, ``Learning overcomplete representations,''
+  {\em Neural computation}, vol.~12, no.~2, pp.~337--365, 2000.
+
+\bibitem{ekanadham2014unified}
+C.~Ekanadham, D.~Tranchina, and E.~P. Simoncelli, ``A unified framework and
+  method for automatic neural spike identification,'' {\em Journal of
+  neuroscience methods}, vol.~222, pp.~47--55, 2014.
+
+\bibitem{yang2011fisher}
+M.~Yang, L.~Zhang, X.~Feng, and D.~Zhang, ``Fisher discrimination dictionary
+  learning for sparse representation,'' in {\em 2011 International Conference
+  on Computer Vision}, pp.~543--550, IEEE, 2011.
+
+\end{thebibliography}

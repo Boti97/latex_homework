@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  30 NOV 2021 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  30 NOV 2021 21:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -334,9 +334,7 @@ e
 ))
 \c@szaml=\count291
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{c:/Programs/Texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+[1{c:/Programs/Texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
@@ -352,6 +350,11 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
 (c:/Programs/Texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Underfull \hbox (badness 1742) in paragraph at lines 78--79
+\OT1/ptm/m/n/10 is-crim-i-nant scheme [14], such that the re-sul-tant dic-tio-
+ []
+
+
 Overfull \hbox (5.71564pt too wide) in paragraph at lines 107--107
 []|\OT1/ptm/m/n/8 1.| 
  []
@@ -386,7 +389,7 @@ Underfull \hbox (badness 10000) in alignment at lines 176--176
 [][][][][] 
  []
 
-[3]
+[3] (./document.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -402,11 +405,11 @@ Before submitting the final camera ready copy, remember to:
 
 ] (./document.aux) ) 
 Here is how much of TeX's memory you used:
- 4135 strings out of 478599
- 60451 string characters out of 5853592
- 382106 words of memory out of 5000000
- 21976 multiletter control sequences out of 15000+600000
- 442641 words of font info for 100 fonts, out of 8000000 for 9000
+ 4155 strings out of 478599
+ 60819 string characters out of 5853592
+ 382303 words of memory out of 5000000
+ 21992 multiletter control sequences out of 15000+600000
+ 443777 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,12n,66p,1276b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Programs/Texlive/2021/texmf-dist/fonts/enc/dvips/base/8
@@ -426,7 +429,7 @@ rograms/Texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Programs/T
 exlive/2021/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/Programs/Texlive/2
 021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Programs/Texlive/2021/texmf
 -dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on document.pdf (4 pages, 187410 bytes).
+Output written on document.pdf (4 pages, 192882 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream
