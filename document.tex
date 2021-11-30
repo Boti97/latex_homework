@@ -6,7 +6,8 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 \DeclareMathOperator*{\argmin}{argmin}
 
@@ -30,6 +31,8 @@
 \newcommand{\biggparalleled}[1]{\bigg\Vert{#1}\bigg\Vert}
 \newcommand{\Biggparalleled}[1]{\Bigg\Vert{#1}\Bigg\Vert}
 
+\newcounter{szaml}
+\renewcommand*{\theszaml}{\arabic{szaml}}
 
 \maketitle
 	
@@ -87,7 +90,23 @@
 	\end{multline}
 	where $X_j^i$ is the coding coefficient of $A_i$ over $D_j$. Discriminative coding coefficients is achieved by designing $f(X)$ using Fisher discrimination criterion. This criterion minimizes the within class variance of $X$, $S_W(X)=\sum_{i=1}^{N}\sum_{x\in X_i}(\mathrm{\textbf{x}}-\mathrm{\textbf{m}}_
 	\mathrm{\textbf{i}})(\mathrm{\textbf{x}}-\mathrm{\textbf{m}}_\mathrm{\textbf{i}})^T$, and maximizes the between class variance of $X$, $\sum_{i=1}^{N}n_i(\mathrm{\textbf{m}}-\mathrm{\textbf{m}}_\mathrm{\textbf{i}})(\mathrm{\textbf{m}}-\mathrm{\textbf{m}}_\mathrm{\textbf{i}})^T$; where $n_i$ is the number of training samples in class $i$, and $\mathrm{\textbf{m}}$ and $\mathrm{\textbf{m}}_\mathrm{\textbf{i}}$ are the mean vectors
-	%TODO add table
+	
+	
+	\begin{table}
+		\caption{Fisher Discriminatory Dictionary Learning Algorithm}
+		\label{tab:fisher_disc}
+		\begin{tabularx}{\columnwidth}{p{0.01cm} p{0.9\columnwidth}}
+			\hline
+			\multicolumn{2}{c}{\textbf{Fisher Discrimination Dictionary Learning}} \\
+			\hline
+			\stepcounter{szaml}\theszaml\stepcounter{szaml}. & Initialize atoms of $D$ with random vectors of unit norm. \\
+			\theszaml\stepcounter{szaml}. & Fix $D$ and update the sparse coding coefficients $X_i, i = 1, \dots, N$, one by one; by solving (5). \\
+			\theszaml\stepcounter{szaml}. & Fix $X$ and update each sub-dictionary $D_i, i = 1, \dots , N$, by solving (6). \\
+			\theszaml\stepcounter{szaml}. & Repeat steps 2 and 3, until $J \leq \epsilon$ or the maximum number of iterations is reached. \\
+			\hline
+		\end{tabularx}
+	\end{table}
+	
 	of $X$ and $X_i$ respectively. Therefore, a convex discrimination
 	function could be defined as
 	\begin{equation}
@@ -140,7 +159,23 @@
 	The dictionary learning was done with 100 training sample of each spike class, approximately 10\% of the simulation data set. The construction capability is one powerful aspect of using dictionary learning, and this was emphasized in the objective function used to build learn the dictionary (2). A reconstructed spike samples are shown in Fig. 2, it is shown that the spikes were well reconstructed, with a mean squared error (MSE) of 0.015 and 0.017, respectively. The total reconstruction mean squared error for the training set was 3.49. These results show the reconstruction power and accuracy of the learned dictionary. The fidelity term in (2) optimized for the reconstruction error by each class specific sub-dictionary, this along with the discrimination constraint, $f(x)$, which maximized the between classes variance, have reduced the interference from other classes, that is reflected as low variance of the reconstructed signal from the original one. This powerful capability enables us to use sparse representation of signals without a sever loss of data; besides that, this sparse representation can be also used for classification. This could also enable estimation of missing data points or clipped signals.
 	
 	The accuracy of correctly classifying testing detected spikes waveform was calculated for three methods: FDDL dictionary learning, standard clustering using PCA and and $k$-means [4], and the superparamagnetic clustering [7]. Table II shows the accuracy of the three methods under different noise levels, the average was taken for ten experiments and four
-	%TODO: add table
+	
+	\begin{table}
+		\caption{Accuracy of clustering testing spiking samples (mean $\pm$ std)}
+		\label{tab:acc_clust}
+		\begin{tabularx}{\columnwidth}{c c c c c}
+			\cmidrule{2-5}
+			& \multicolumn{4}{c}{Noise Level} \\
+			\cmidrule{2-5}
+			Method & 0.05 & 0.1 & 0.15 & 0.2 \\
+			\cmidrule[0.7pt]{1-5}
+			FDDL & 0.97 $\pm$ 0.05 & 0.88 $\pm$ 0.08 & 0.76 $\pm$ 0.06 & 0.66 $\pm$ 0.10 \\
+			SPC & 0.65 $\pm$ 0.01 & 0.61 $\pm$ 0.29 & 0.37 $\pm$ 0.03 & 0.19 $\pm$ 0.11 \\
+			k-means & 0.50 $\pm$ 0.36 & 0.48 $\pm$ 0.27 & 0.45 $\pm$ 0.38 & 0.40 $\pm$ 0.34 \\
+			\cmidrule[0.7pt]{1-5}
+		\end{tabularx}
+	\end{table}
+
 	data sets. During each experiment the dictionary was learned with randomly picked 10\% of each class data, and tested with the remaining 90\%. It is apparent that dictionary based classification outperformed the SPC and k-means clustering. With the sparse signal representation, the dictionary based clustering was robust to noise as noted in the results, even with a noise level of 0.25, the accuracy was 0.64 $\pm$ 0.11. FDDL Dictionary learning used the training samples to learn the space where the given signal could be coded. That is, instead of pre-assuming a particular form of features (e.g. wavelets in SPC), we learned the features from data. Significantly, the learned features are for the specific problem in hand. This is in contrast to PCA, which learns features to optimize a different objective function. This makes dictionary learning problem specific and improves the clustering performance. Another important factor with clustering using FDDL is that both the coding coefficients and reconstruction error are discriminative. Thus, making use of both of them, as we did in (7) and (8), gives more accurate clustering results.
 	
 	Although overlapping of spike waveforms was not studied in this paper, FDDL dictionary learning has the capability of detecting the overlapped signals and decomposing them as a sparse superposition of several dictionary elements. These dictionary atoms elements are the features for clustering. Building an over complete dictionary [13] provides the space that when used to decode the input signal we can get the mixing weights and the firing time from the sparse coded coefficients.
