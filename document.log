@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  1 DEC 2021 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.16)  1 DEC 2021 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -113,9 +113,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \IEEEPARstartletwidth=\dimen161
 \c@IEEEbiography=\count196
 \@IEEEtranrubishbin=\box51
-)
-** ATTENTION: Overriding command lockouts (line 2).
-(c:/Programs/Texlive/2021/texmf-dist/tex/latex/cite/cite.sty
+) (c:/Programs/Texlive/2021/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
@@ -333,23 +331,22 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@szaml=\count291
-
-[1{c:/Programs/Texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 
 (c:/Programs/Texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (c:/Programs/Texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [1{c:/Programs/Texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
 Underfull \hbox (badness 1742) in paragraph at lines 79--80
 \OT1/ptm/m/n/10 is-crim-i-nant scheme [14], such that the re-sul-tant dic-tio-
  []
@@ -380,12 +377,12 @@ Underfull \hbox (badness 10000) in alignment at lines 110--110
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 161--163
+Underfull \hbox (badness 10000) in paragraph at lines 162--164
 []\OT1/ptm/m/n/10 The dic-tio-nary learn-ing and clus-ter-ing pa-ram-e-ters
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 184--184
+Underfull \hbox (badness 10000) in alignment at lines 185--185
 [][][][][] 
  []
 
@@ -405,13 +402,13 @@ Before submitting the final camera ready copy, remember to:
 
 ] (./document.aux) ) 
 Here is how much of TeX's memory you used:
- 4163 strings out of 478599
- 60867 string characters out of 5853592
- 382355 words of memory out of 5000000
- 22000 multiletter control sequences out of 15000+600000
- 443777 words of font info for 101 fonts, out of 8000000 for 9000
+ 4189 strings out of 478599
+ 61264 string characters out of 5853592
+ 383933 words of memory out of 5000000
+ 22026 multiletter control sequences out of 15000+600000
+ 446612 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,66p,1278b,259s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,12n,66p,1278b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Programs/Texlive/2021/texmf-dist/fonts/enc/dvips/base/8
 r.enc}<c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
 0.pfb><c:/Programs/Texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
@@ -429,7 +426,7 @@ rograms/Texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Programs/T
 exlive/2021/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/Programs/Texlive/2
 021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Programs/Texlive/2021/texmf
 -dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on document.pdf (4 pages, 192831 bytes).
+Output written on document.pdf (4 pages, 193085 bytes).
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream

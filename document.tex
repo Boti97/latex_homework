@@ -1,5 +1,5 @@
 \documentclass[conference]{IEEEtran}
-\IEEEoverridecommandlockouts
+
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -16,9 +16,9 @@
 %opening
 \title{Dictionary Learning for Sparse Representation and Classification of Neural Spikes}
 \author{
-	\IEEEauthorblockN{Ahmed H. Dallal, Yiran Chen, Douglas Weber, and Zhi-Hong Mao}
-	\IEEEauthorblockA{Department of Electrical and Computer Engineering}
-	\IEEEauthorblockA{Department of Bioengineering}
+	\IEEEauthorblockN{Ahmed H. Dallal$^1$, Yiran Chen$^1$, Douglas Weber$^2$, and Zhi-Hong Mao$^{1,2}$}
+	\IEEEauthorblockA{$^1$Department of Electrical and Computer Engineering}
+	\IEEEauthorblockA{$^2$Department of Bioengineering}
 	\IEEEauthorblockA{University of Pittsburgh}
 	\IEEEauthorblockA{Pittsburgh, PA 15261}
 	\IEEEauthorblockA{ahd12@pitt.edu}
@@ -62,9 +62,9 @@
 	
 	In this work, we propose the use of Fisher discriminant based dictionary learning (FDDL) \cite{yang2011fisher} for decomposition and classification of detected spike waveforms. The space over which the signal could be decomposed is learned from training samples. The learned structured dictionary is composed of class specific sub-dictionaries. To ensure discriminative coefficients, Fisher discrimination criterion is imposed when learning the dictionary and coding coefficients. The learned sparse coding coefficients and reconstruction errors are both used for classification of testing data sets.
 	
-	The remainder of this paper is organized as follows. Section II describes the dictionary learning process, clustering criterion, and experimental testing setup. Section III begins with discussing the spike reconstruction capability of the learned dictionary, and then compares the performance of our approach with other existing clustering algorithms with highlighting additional features of our methods. Summary and future direction are given in Section IV.
+	The remainder of this paper is organized as follows. Section \ref{sec:methods} describes the dictionary learning process, clustering criterion, and experimental testing setup. Section \ref{sec:res_and_disc} begins with discussing the spike reconstruction capability of the learned dictionary, and then compares the performance of our approach with other existing clustering algorithms with highlighting additional features of our methods. Summary and future direction are given in Section \ref{sec:conc_and_fut}.
 	
-	\section{Methods}
+	\section{Methods} \label{sec:methods}
 	In sparse representation classification problems, there are two phases: coding and classification. The dictionary atoms are first learned using training data samples. Then, the detected spiked are coded over this learned dictionary. The coding sparse coefficients are used along with reconstruction error to classify the detected spikes.
 	
 	\subsection{Spike Detection}
@@ -73,7 +73,7 @@
 		\label{eq:1}
 		T_v=4\hat{\sigma}_n,\;\;\hat{\omega}_n=\mathrm{median}(V(t)/0.6745),
 	\end{equation}
-	where V (t) is the filtered signal and TODO is an estimate of noise standard deviation. For each detected spike, a 2.5 milliseconds widow is identified as the spiking activity to be processed.
+	where V (t) is the filtered signal and $\hat{\sigma}_n$ is an estimate of noise standard deviation. For each detected spike, a 2.5 milliseconds widow is identified as the spiking activity to be processed.
 	
 	\subsection{Fisher Discrimination Dictionary Learning}
 	A structured dictionary, D, is learned based on a Fisher iscriminant scheme \cite{yang2011fisher}, such that the resultant dictionary atoms have correspondence to class labels, i.e., $D = D_1, D_2, ..., D_N]$, where $D_i$ s the class specific sub-dictionary sociated with class i, and N is the total number of classes. or a training samples set $A = [A_1, A_2, ..., A_N]$, where $A_i$ s he sub-set samples from class i, we denote X as the coding oefficients of samples matrix A over D, i.e., $A \approx DX$. Also,  can be expressed as $X = [X_1, X_2, ..., X_N]$, where $X_i$ s he sub-matrix for coding coefficients of $A_i$ over D.
@@ -118,7 +118,7 @@
 	\end{equation}
 	where the last term is an elastic term with a scalar parameter $\eta$. Substituting (\ref{eq:3}) and (\ref{eq:4}) into (\ref{eq:2}) completes the problem formulation. The objective function (\ref{eq:2}) is not jointly convex on $D$ and $X$, but, it is convex with respect to each of them when the other is fixed. Therefore, $D$ and $X$ are alternatively optimized, where we update $X$ by fixing $D$, and update $D$ by fixing $X$. These two sub-problems are iteratively solved until convergence.
 	
-	In the first sub-problem, (\ref{eq:2}) is reduced to sparse coding problem in which Xi was estimated class by class. When estimating Xi , other classes coefficients Xj , j 6= i, are held constant. The reduced objective function is
+	In the first sub-problem, (\ref{eq:2}) is reduced to sparse coding problem in which $X_i$ was estimated class by class. When estimating $X_i$ , other classes coefficients $X_j$, $j \neq i$, are held constant. The reduced objective function is
 	\begin{equation}
 		\label{eq:5}
 		J_{X_i}=\min_{X_i}r(A_i,D,X_i)+\lambda_1\paralleled{X}_1+\lambda_2f_i(X_i),
@@ -131,7 +131,7 @@
 		J_{D_i}=\min_{D_i}\Biggparalleled{A-D_iX^i-\sum_{j=1,j\neq i}^{N}D_jX_i^i}_F^2 + \\
 		\paralleled{A_iD_iX_i^i}_F^2+\sum_{j=1,j\neq i}^{N}\paralleled{D_iX_j^i}_F^2,
 	\end{multline}
-	which is a quadratic programming problem. The algorithm for FDDL is shown in table TABLEREF.
+	which is a quadratic programming problem. The algorithm for FDDL is shown in table \ref{tab:fisher_disc}.
 	
 	\subsection{Spike Clustering}
 	Testing samples are classified by coding them over $D$. Each sample, s, is coded over each class specific sub-dictionary, and then the reconstruction error along with the coding coefficients are used for classification.
@@ -145,14 +145,14 @@
 		\label{eq:7}
 		\hat{\textbf{y}_i}=\argmin_{\textbf{y}_i}\paralleled{\textbf{s}-D_i\textbf{y}_i}_2^2+\gamma_1\paralleled{\textbf{y}_i}_1+\gamma_2\paralleled{\textbf{y}_i-\textbf{m}_i^i}_2^2,
 	\end{equation}
-	where TODOFIX${m_i}^i$ is the $i^{th}$-class trained mean sub-vector associated with $D_i$, and $\gamma_1$ and $\gamma_2$ are constants. From (\ref{eq:7}), $y_i$ should be close to TODOFIX$mi i$, and $D_i$ should well sparsely code $s$. Therefore, the classification metric is defined by
+	where $m_i^i$ is the $i^{th}$-class trained mean sub-vector associated with $D_i$, and $\gamma_1$ and $\gamma_2$ are constants. From (\ref{eq:7}), $y_i$ should be close to $m_i^i$, and $D_i$ should well sparsely code $s$. Therefore, the classification metric is defined by
 	\begin{equation}
 		\label{eq:8}
 		e_i=\paralleled{\text{s}-D_i\hat{\textbf{y}_i}}_2^2+\gamma_1\paralleled{\hat{\textbf{y}_i}}_1+\gamma_2\paralleled{\hat{\textbf{y}_i-\textbf{m}_i^i}}_2^2,
 	\end{equation}
-	The testing sample $s$ was assigned to the class that gave the minimum error (TODOREF 9).
+	The testing sample $s$ was assigned to the class that gave the minimum error (\ref{eq:9}).
 	\begin{equation}
-		\label{eq:8}
+		\label{eq:9}
 		\mathrm{cluster(s)}=\argmin_ie_i
 	\end{equation}
 	
@@ -164,10 +164,10 @@
 	
 	We compared our method to the superparamagnetic clustering (SPC), introduced in \cite{quiroga2004unsupervised}, and to the standard k-means clustering \cite{lewicki1998review}, where $k$-means clustering was applied to the PCA components of the detected spikes. Here, we chose the components that retained 99\% of data variance.
 	
- 	\section{Results and Discussion}
+ 	\section{Results and Discussion} \label{sec:res_and_disc}
 	The dictionary learning was done with 100 training sample of each spike class, approximately 10\% of the simulation data set. The construction capability is one powerful aspect of using dictionary learning, and this was emphasized in the objective function used to build learn the dictionary (\ref{eq:2}). A reconstructed spike samples are shown in Fig. 2, it is shown that the spikes were well reconstructed, with a mean squared error (MSE) of 0.015 and 0.017, respectively. The total reconstruction mean squared error for the training set was 3.49. These results show the reconstruction power and accuracy of the learned dictionary. The fidelity term in (\ref{eq:2}) optimized for the reconstruction error by each class specific sub-dictionary, this along with the discrimination constraint, $f(x)$, which maximized the between classes variance, have reduced the interference from other classes, that is reflected as low variance of the reconstructed signal from the original one. This powerful capability enables us to use sparse representation of signals without a sever loss of data; besides that, this sparse representation can be also used for classification. This could also enable estimation of missing data points or clipped signals.
 	
-	The accuracy of correctly classifying testing detected spikes waveform was calculated for three methods: FDDL dictionary learning, standard clustering using PCA and and $k$-means \cite{lewicki1998review}, and the superparamagnetic clustering \cite{quiroga2004unsupervised}. Table II shows the accuracy of the three methods under different noise levels, the average was taken for ten experiments and four
+	The accuracy of correctly classifying testing detected spikes waveform was calculated for three methods: FDDL dictionary learning, standard clustering using PCA and and $k$-means \cite{lewicki1998review}, and the superparamagnetic clustering \cite{quiroga2004unsupervised}. Table \ref{tab:acc_clust} shows the accuracy of the three methods under different noise levels, the average was taken for ten experiments and four
 	
 	\begin{table}
 		\caption{Accuracy of clustering testing spiking samples (mean $\pm$ std)}
@@ -185,11 +185,11 @@
 		\end{tabularx}
 	\end{table}
 
-	data sets. During each experiment the dictionary was learned with randomly picked 10\% of each class data, and tested with the remaining 90\%. It is apparent that dictionary based classification outperformed the SPC and k-means clustering. With the sparse signal representation, the dictionary based clustering was robust to noise as noted in the results, even with a noise level of 0.25, the accuracy was 0.64 $\pm$ 0.11. FDDL Dictionary learning used the training samples to learn the space where the given signal could be coded. That is, instead of pre-assuming a particular form of features (e.g. wavelets in SPC), we learned the features from data. Significantly, the learned features are for the specific problem in hand. This is in contrast to PCA, which learns features to optimize a different objective function. This makes dictionary learning problem specific and improves the clustering performance. Another important factor with clustering using FDDL is that both the coding coefficients and reconstruction error are discriminative. Thus, making use of both of them, as we did in (\ref{eq:7}) and (TODOREF 8), gives more accurate clustering results.
+	data sets. During each experiment the dictionary was learned with randomly picked 10\% of each class data, and tested with the remaining 90\%. It is apparent that dictionary based classification outperformed the SPC and k-means clustering. With the sparse signal representation, the dictionary based clustering was robust to noise as noted in the results, even with a noise level of 0.25, the accuracy was 0.64 $\pm$ 0.11. FDDL Dictionary learning used the training samples to learn the space where the given signal could be coded. That is, instead of pre-assuming a particular form of features (e.g. wavelets in SPC), we learned the features from data. Significantly, the learned features are for the specific problem in hand. This is in contrast to PCA, which learns features to optimize a different objective function. This makes dictionary learning problem specific and improves the clustering performance. Another important factor with clustering using FDDL is that both the coding coefficients and reconstruction error are discriminative. Thus, making use of both of them, as we did in (\ref{eq:7}) and (\ref{eq:8}), gives more accurate clustering results.
 	
 	Although overlapping of spike waveforms was not studied in this paper, FDDL dictionary learning has the capability of detecting the overlapped signals and decomposing them as a sparse superposition of several dictionary elements. These dictionary atoms elements are the features for clustering. Building an over complete dictionary \cite{lewicki2000learning} provides the space that when used to decode the input signal we can get the mixing weights and the firing time from the sparse coded coefficients.
 	
-	\section{Conclusion and Future Work}
+	\section{Conclusion and Future Work} \label{sec:conc_and_fut}
 	A dictionary learning based spike sorting algorithm has been developed, motivated by the powerful reconstruction and discrimination capability of dictionary learning. The FDDL method used the Fisher discrimination criterion to build structured dictionary, whose sub-dictionaries had class specific labels, from the training samples. These sub-dictionaries provided basis for clustering of testing samples. The discriminative ability of FFDL is two fold. First, each learned subdictionary can well reconstruct signals from the corresponding class, and it has poor representation of other classes signals. Second, the sparse coding coefficients are also discriminative. Therefore, the developed clustering criterion used both the discriminative reconstruction error and sparse coding coefficients to cluster the testing spike signals. When tested with simulated data sets and compared to other clustering methods, the method gave high performance in terms of clustering accuracy and reconstruction mean squared error.
 
 	As a future direction, the method can be further extended to resolve spike overlapping. The dictionary coding coefficients have the ability to represent the overlapped spikes as a sparse superposition of several dictionary atoms. Thus, we can estimate the time onsets and amplitudes of overlapped spikes. In the ongoing work, we are building an over complete dictionary to test the overlapped signals and apply the FDDL on real data signals.
