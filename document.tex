@@ -70,6 +70,7 @@
 	\subsection{Spike Detection}
 	First, the signal is filtered by a fourth order bandpass (300 – 6000 Hz) filter. Then, amplitude thresholding was used for spike detection. The threshold, Tv, is derived from an estimate of the noise level \cite{quiroga2004unsupervised} as,
 	\begin{equation}
+		\label{eq:1}
 		T_v=4\hat{\sigma}_n,\;\;\hat{\omega}_n=\mathrm{median}(V(t)/0.6745),
 	\end{equation}
 	where V (t) is the filtered signal and TODO is an estimate of noise standard deviation. For each detected spike, a 2.5 milliseconds widow is identified as the spiking activity to be processed.
@@ -77,14 +78,16 @@
 	\subsection{Fisher Discrimination Dictionary Learning}
 	A structured dictionary, D, is learned based on a Fisher iscriminant scheme \cite{yang2011fisher}, such that the resultant dictionary atoms have correspondence to class labels, i.e., $D = D_1, D_2, ..., D_N]$, where $D_i$ s the class specific sub-dictionary sociated with class i, and N is the total number of classes. or a training samples set $A = [A_1, A_2, ..., A_N]$, where $A_i$ s he sub-set samples from class i, we denote X as the coding oefficients of samples matrix A over D, i.e., $A \approx DX$. Also,  can be expressed as $X = [X_1, X_2, ..., X_N]$, where $X_i$ s he sub-matrix for coding coefficients of $A_i$ over D.
 	
-	The coding coefficients should be sparse, and the dictionary should be able to accurately construct $A$. The dictionary should have a high discriminating capability of spike classes in $A$, as well. Based on these three objective, the optimization problem in (TODOREF 2) can be proposed to estimate $D$ and $X$ from the training set $A$.
+	The coding coefficients should be sparse, and the dictionary should be able to accurately construct $A$. The dictionary should have a high discriminating capability of spike classes in $A$, as well. Based on these three objective, the optimization problem in (\ref{eq:2}) can be proposed to estimate $D$ and $X$ from the training set $A$.
 	\begin{equation}
+		\label{eq:2}
 		J=\min_{D,X}\sum_{i=0}^{N}r(A_i,D,X_i)+\lambda\paralleled{X}_1+\lambda_2f{X}
 	\end{equation}
 	where $r(A, D, X)$ is the discrimination fidelity term, $\paralleled{X}_1$ is the sparsity constraint, $f(X)$ is the discrimination constraint on the coding coefficients, and $\lambda_{1,2}$ are scalar parameters.
 	
 	With each sub-dictionary $D_i$ associated with the $i^{th}$ class, $A_i$ should be well represented by $D_i$ but not $D_j$, $i \neq j$. This implies that $X_i$ be nearly zero, except for some significant coefficients that correspond to the sub-dictionary $D_i$ . Hence, the discriminative fidelity term is defined as
 	\begin{multline}
+		\label{eq:3}
 		r(A_i,D,X_i)=\paralleled{A_i-DX_i}_F^2+\paralleled{A_i-D_iX_i^i}+ \\
 		\sum_{j=1,j\neq i}^{N}\Bigparalleled{D_jX_i^j}_F^2,
 	\end{multline}
@@ -96,12 +99,12 @@
 		\caption{Fisher Discriminatory Dictionary Learning Algorithm}
 		\label{tab:fisher_disc}
 		\begin{tabularx}{\columnwidth}{p{0.01cm} p{0.9\columnwidth}}
-			\hline
+			\cmidrule{1-2}
 			\multicolumn{2}{c}{\textbf{Fisher Discrimination Dictionary Learning}} \\
-			\hline
+			\cmidrule{1-2}
 			\stepcounter{szaml}\theszaml\stepcounter{szaml}. & Initialize atoms of $D$ with random vectors of unit norm. \\
-			\theszaml\stepcounter{szaml}. & Fix $D$ and update the sparse coding coefficients $X_i, i = 1, \dots, N$, one by one; by solving (5). \\
-			\theszaml\stepcounter{szaml}. & Fix $X$ and update each sub-dictionary $D_i, i = 1, \dots , N$, by solving (6). \\
+			\theszaml\stepcounter{szaml}. & Fix $D$ and update the sparse coding coefficients $X_i, i = 1, \dots, N$, one by one; by solving (\ref{eq:5}). \\
+			\theszaml\stepcounter{szaml}. & Fix $X$ and update each sub-dictionary $D_i, i = 1, \dots , N$, by solving (\ref{eq:6}). \\
 			\theszaml\stepcounter{szaml}. & Repeat steps 2 and 3, until $J \leq \epsilon$ or the maximum number of iterations is reached. \\
 			\hline
 		\end{tabularx}
@@ -110,18 +113,21 @@
 	of $X$ and $X_i$ respectively. Therefore, a convex discrimination
 	function could be defined as
 	\begin{equation}
+		\label{eq:4}
 		f(X)=\mathrm{tr}(S_W(X))-\mathrm{tr}(S_B(X))+\eta\paralleled{X}_F^2,
 	\end{equation}
-	where the last term is an elastic term with a scalar parameter $\eta$. Substituting (TODOREF 3) and (TODOREF 4) into (TODOREF 2) completes the problem formulation. The objective function (TODOREF 2) is not jointly convex on $D$ and $X$, but, it is convex with respect to each of them when the other is fixed. Therefore, $D$ and $X$ are alternatively optimized, where we update $X$ by fixing $D$, and update $D$ by fixing $X$. These two sub-problems are iteratively solved until convergence.
+	where the last term is an elastic term with a scalar parameter $\eta$. Substituting (\ref{eq:3}) and (\ref{eq:4}) into (\ref{eq:2}) completes the problem formulation. The objective function (\ref{eq:2}) is not jointly convex on $D$ and $X$, but, it is convex with respect to each of them when the other is fixed. Therefore, $D$ and $X$ are alternatively optimized, where we update $X$ by fixing $D$, and update $D$ by fixing $X$. These two sub-problems are iteratively solved until convergence.
 	
-	In the first sub-problem, (TODOREF 2) is reduced to sparse coding problem in which Xi was estimated class by class. When estimating Xi , other classes coefficients Xj , j 6= i, are held constant. The reduced objective function is
+	In the first sub-problem, (\ref{eq:2}) is reduced to sparse coding problem in which Xi was estimated class by class. When estimating Xi , other classes coefficients Xj , j 6= i, are held constant. The reduced objective function is
 	\begin{equation}
+		\label{eq:5}
 		J_{X_i}=\min_{X_i}r(A_i,D,X_i)+\lambda_1\paralleled{X}_1+\lambda_2f_i(X_i),
 	\end{equation}
-	with $f_i(X_i)=\paralleled{X_i-M_i}_F^2-\sum_{k=1}^{N}\paralleled{M-M_k}_F^2+\paralleled{X}_F^2$, where $M_k$ and and $M$ are the mean vector matrices of class $k$ and all classes receptively. We set $\eta$ to 1, so that $f_i(X_i)$ is strictly convex to $X_i$ . Equation (5) is solved using the iterative projection method \cite{yang2011fisher}.
+	with $f_i(X_i)=\paralleled{X_i-M_i}_F^2-\sum_{k=1}^{N}\paralleled{M-M_k}_F^2+\paralleled{X}_F^2$, where $M_k$ and and $M$ are the mean vector matrices of class $k$ and all classes receptively. We set $\eta$ to 1, so that $f_i(X_i)$ is strictly convex to $X_i$ . Equation (\ref{eq:5}) is solved using the iterative projection method \cite{yang2011fisher}.
 	
 	The sub-dictionaries $D_i$ are estimated class by class, while fixing $X$ and all other sub-dictionaries $D_j$, $j\neq i$. The reduced objective function is
 	\begin{multline}
+		\label{eq:6}
 		J_{D_i}=\min_{D_i}\Biggparalleled{A-D_iX^i-\sum_{j=1,j\neq i}^{N}D_jX_i^i}_F^2 + \\
 		\paralleled{A_iD_iX_i^i}_F^2+\sum_{j=1,j\neq i}^{N}\paralleled{D_iX_j^i}_F^2,
 	\end{multline}
@@ -136,14 +142,17 @@
 	 
 	coding coefficients, $y_i$, associated with $D_i$ can then computed as
 	\begin{equation}
+		\label{eq:7}
 		\hat{\textbf{y}_i}=\argmin_{\textbf{y}_i}\paralleled{\textbf{s}-D_i\textbf{y}_i}_2^2+\gamma_1\paralleled{\textbf{y}_i}_1+\gamma_2\paralleled{\textbf{y}_i-\textbf{m}_i^i}_2^2,
 	\end{equation}
-	where TODOFIX${m_i}^i$ is the $i^{th}$-class trained mean sub-vector associated with $D_i$, and $\gamma_1$ and $\gamma_2$ are constants. From (TODOREF 7), $y_i$ should be close to TODOFIX$mi i$, and $D_i$ should well sparsely code $s$. Therefore, the classification metric is defined by
+	where TODOFIX${m_i}^i$ is the $i^{th}$-class trained mean sub-vector associated with $D_i$, and $\gamma_1$ and $\gamma_2$ are constants. From (\ref{eq:7}), $y_i$ should be close to TODOFIX$mi i$, and $D_i$ should well sparsely code $s$. Therefore, the classification metric is defined by
 	\begin{equation}
+		\label{eq:8}
 		e_i=\paralleled{\text{s}-D_i\hat{\textbf{y}_i}}_2^2+\gamma_1\paralleled{\hat{\textbf{y}_i}}_1+\gamma_2\paralleled{\hat{\textbf{y}_i-\textbf{m}_i^i}}_2^2,
 	\end{equation}
 	The testing sample $s$ was assigned to the class that gave the minimum error (TODOREF 9).
 	\begin{equation}
+		\label{eq:8}
 		\mathrm{cluster(s)}=\argmin_ie_i
 	\end{equation}
 	
@@ -156,7 +165,7 @@
 	We compared our method to the superparamagnetic clustering (SPC), introduced in \cite{quiroga2004unsupervised}, and to the standard k-means clustering \cite{lewicki1998review}, where $k$-means clustering was applied to the PCA components of the detected spikes. Here, we chose the components that retained 99\% of data variance.
 	
  	\section{Results and Discussion}
-	The dictionary learning was done with 100 training sample of each spike class, approximately 10\% of the simulation data set. The construction capability is one powerful aspect of using dictionary learning, and this was emphasized in the objective function used to build learn the dictionary (TODOREF 2). A reconstructed spike samples are shown in Fig. 2, it is shown that the spikes were well reconstructed, with a mean squared error (MSE) of 0.015 and 0.017, respectively. The total reconstruction mean squared error for the training set was 3.49. These results show the reconstruction power and accuracy of the learned dictionary. The fidelity term in (TODOREF 2) optimized for the reconstruction error by each class specific sub-dictionary, this along with the discrimination constraint, $f(x)$, which maximized the between classes variance, have reduced the interference from other classes, that is reflected as low variance of the reconstructed signal from the original one. This powerful capability enables us to use sparse representation of signals without a sever loss of data; besides that, this sparse representation can be also used for classification. This could also enable estimation of missing data points or clipped signals.
+	The dictionary learning was done with 100 training sample of each spike class, approximately 10\% of the simulation data set. The construction capability is one powerful aspect of using dictionary learning, and this was emphasized in the objective function used to build learn the dictionary (\ref{eq:2}). A reconstructed spike samples are shown in Fig. 2, it is shown that the spikes were well reconstructed, with a mean squared error (MSE) of 0.015 and 0.017, respectively. The total reconstruction mean squared error for the training set was 3.49. These results show the reconstruction power and accuracy of the learned dictionary. The fidelity term in (\ref{eq:2}) optimized for the reconstruction error by each class specific sub-dictionary, this along with the discrimination constraint, $f(x)$, which maximized the between classes variance, have reduced the interference from other classes, that is reflected as low variance of the reconstructed signal from the original one. This powerful capability enables us to use sparse representation of signals without a sever loss of data; besides that, this sparse representation can be also used for classification. This could also enable estimation of missing data points or clipped signals.
 	
 	The accuracy of correctly classifying testing detected spikes waveform was calculated for three methods: FDDL dictionary learning, standard clustering using PCA and and $k$-means \cite{lewicki1998review}, and the superparamagnetic clustering \cite{quiroga2004unsupervised}. Table II shows the accuracy of the three methods under different noise levels, the average was taken for ten experiments and four
 	
@@ -176,7 +185,7 @@
 		\end{tabularx}
 	\end{table}
 
-	data sets. During each experiment the dictionary was learned with randomly picked 10\% of each class data, and tested with the remaining 90\%. It is apparent that dictionary based classification outperformed the SPC and k-means clustering. With the sparse signal representation, the dictionary based clustering was robust to noise as noted in the results, even with a noise level of 0.25, the accuracy was 0.64 $\pm$ 0.11. FDDL Dictionary learning used the training samples to learn the space where the given signal could be coded. That is, instead of pre-assuming a particular form of features (e.g. wavelets in SPC), we learned the features from data. Significantly, the learned features are for the specific problem in hand. This is in contrast to PCA, which learns features to optimize a different objective function. This makes dictionary learning problem specific and improves the clustering performance. Another important factor with clustering using FDDL is that both the coding coefficients and reconstruction error are discriminative. Thus, making use of both of them, as we did in (TODOREF 7) and (TODOREF 8), gives more accurate clustering results.
+	data sets. During each experiment the dictionary was learned with randomly picked 10\% of each class data, and tested with the remaining 90\%. It is apparent that dictionary based classification outperformed the SPC and k-means clustering. With the sparse signal representation, the dictionary based clustering was robust to noise as noted in the results, even with a noise level of 0.25, the accuracy was 0.64 $\pm$ 0.11. FDDL Dictionary learning used the training samples to learn the space where the given signal could be coded. That is, instead of pre-assuming a particular form of features (e.g. wavelets in SPC), we learned the features from data. Significantly, the learned features are for the specific problem in hand. This is in contrast to PCA, which learns features to optimize a different objective function. This makes dictionary learning problem specific and improves the clustering performance. Another important factor with clustering using FDDL is that both the coding coefficients and reconstruction error are discriminative. Thus, making use of both of them, as we did in (\ref{eq:7}) and (TODOREF 8), gives more accurate clustering results.
 	
 	Although overlapping of spike waveforms was not studied in this paper, FDDL dictionary learning has the capability of detecting the overlapped signals and decomposing them as a sparse superposition of several dictionary elements. These dictionary atoms elements are the features for clustering. Building an over complete dictionary \cite{lewicki2000learning} provides the space that when used to decode the input signal we can get the mixing weights and the firing time from the sparse coded coefficients.
 	
